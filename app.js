@@ -1,12 +1,11 @@
-const showBitcoin = document.querySelector(".card-title");
-const fetchBitconPrice = async () => {
-    const result = await fetch('https://api.cryptonator.com/api/ticker/btc-usd');
-    const data = await result.json();
-    const bitcoinPrice = data.ticker.price;
 
+const jokes  = document.querySelector("#jokes");
+const getJoke = async() => {
+  const config = { headers: { Accept: 'application/json'}}
+  const res = await axios.get('https://icanhazdadjoke.com/', config);
+  const newLi = document.createElement('li')
+  newLi.append(res.data.joke);
+  jokes.append(newLi);
 }
-function dateFunction() {
-    var d = new Date();
-    document.querySelector(".card-footer").innerHTML = d;
-  }
-showBitcoin.addEventListener("load",  fetchBitconPrice(),  dateFunction() );
+const btn  = document.querySelector("button");
+btn.addEventListener('click', getJoke)
